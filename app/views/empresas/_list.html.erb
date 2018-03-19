@@ -1,0 +1,7 @@
+<tr>
+	<td><%= @empresa.name %></td>
+	<td><%= @empresa.description %></td>
+	<td><%= link_to 'Show', @empresa %></td>
+	<td><%= link_to 'Edit', edit_empresa_path(@empresa), data:{remote:true} %></td>
+	<td><%= link_to 'Destroy', @empresa, method: :delete, data: { confirm: 'Are you sure?', remote: true } %></td>
+</tr>

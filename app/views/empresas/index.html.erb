@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Empresas</h1>
+<div class="row">
+  <div class="col-md-6">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody id="empresa">
+        <% @empresas.each do |empresa| %>
+          <tr id="<%= empresa.id %>">
+            <td id="nombre<%= empresa.id %>"><%= empresa.name %></td>
+            <td id="descripcion<%= empresa.id %>"><%= empresa.description %></td>
+            <td><%= link_to 'Show', empresa %></td>
+            <td><%= link_to 'Edit', edit_empresa_path(empresa), data:{remote:true} %></td>
+            <td><%= link_to 'Destroy', empresa, method: :delete, data: { confirm: 'Are you sure?', remote:true  } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <h2>Crear Empresa</h2>
+    <%= form_with(model: @empresa) do |form| %>
+      <% if @empresa.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@empresa.errors.count, "error") %> prohibited this empresa from being saved:</h2>
+
+          <ul>
+          <% @empresa.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name, id: :empresa_name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_field :description, id: :empresa_description %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Comentario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="empresa_edit">
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
