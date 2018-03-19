@@ -1,6 +1,6 @@
 <div class="well well-sm" id="<%= @reclamo.id %>">
 	<strong><%= @reclamo.user.email %>:</strong>
-	<p><%= @reclamo.created_at %></p>
+	<p><%= @reclamo.created_at.strftime("%d-%m-%Y--%H:%M:%S") %></p>
 	<%= @reclamo.contenido %>
 	<br><br>
 </div>
