@@ -12,6 +12,7 @@ class EmpresasController < ApplicationController
   # GET /empresas/1
   # GET /empresas/1.json
   def show
+    @reclamos = Reclamo.all.order('created_at DESC')
   end
 
   # GET /empresas/new

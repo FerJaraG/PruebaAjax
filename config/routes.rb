@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :empresas
+  resources :empresas do 
+  	resources :reclamos, only: [:create, :destroy, :update, :edit]
+  end
+
   devise_for :users
 
   root 'empresas#index'

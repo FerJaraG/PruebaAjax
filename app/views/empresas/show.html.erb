@@ -10,5 +10,40 @@
   <%= @empresa.description %>
 </p>
 
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="well well-sm">
+			<legend>Comentar:</legend>
+			<%= form_with(model: [@empresa, Reclamo.new], html: { class: 'form-horizontal' }) do |f| %>
+				<div class="form-group">
+					<div class="col-md-12">
+						<%= f.text_area :contenido, placeholder: 'Escribe tu comentario aquí...', class: 'form-control', id: :texto %>
+					</div>
+				</div>
+				<%= f.submit 'Comentar', class: 'btn btn-primary' %>
+			<% end %>
+			  
+		</div>
+	</div>
+
+	<div class="col-md-8" id="reclamos">
+		<% @reclamos.each do |comentario| %>
+			<% if (@empresa.id == comentario.empresa_id) %>
+				<div class="well well-sm" id="<%= comentario.id %>">
+					<strong><%= comentario.user.email %>:</strong>
+					<p><%=comentario.created_at.strftime("%d-%m-%Y--%H:%M:%S")%></p>
+					<div id="contenido<%= comentario.id %>">
+						<%= comentario.contenido %>
+						<br><br>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+
+
 <%= link_to 'Edit', edit_empresa_path(@empresa) %> |
 <%= link_to 'Back', empresas_path %>
